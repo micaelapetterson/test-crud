@@ -15,9 +15,19 @@ return new class extends Migration
     {
         Schema::create('product', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->text('description');
+            $table->string('image');
+            $table->string('brand');
+            $table->unsignedBigInteger('category_id');
+            $table->decimal('price', 8, 2);
+            $table->decimal('price_sale', 8, 2);
             $table->timestamps();
+
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
+
 
     /**
      * Reverse the migrations.

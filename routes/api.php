@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => ['api']], function () {
 
-    Route::apiResource("product", IngredientController::class);
-    Route::apiResource("category", PizzaController::class);
+    Route::apiResource("product", ProductController::class);
+    Route::apiResource("category", CategoryController::class);
 
 });
