@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+
 
 class CategoryController extends Controller
 {
@@ -13,7 +15,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::with(['products'])->paginate(10);
+        
+        return response()->json($categories, 200);
     }
 
     /**
@@ -24,7 +28,17 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validar
+        $request->validate([
+            "name"=> "required|unique|max:255"
+        ]);
+
+        // guardar
+        $ing = new Category();
+        $ing->name = $request->name;
+        $ing->save();
+
+        return response()->json(["message" => "Category Registered"], 201);
     }
 
     /**
@@ -33,9 +47,11 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(string $id)
     {
-        //
+        $category = Category::find($id);
+
+        return response()->json($category, 200);
     }
 
     /**
@@ -45,9 +61,18 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        //
+        // validar
+        $request->validate([
+            "name"=> "required|max:255|unique:categories,name,$id"
+        ]);
+
+        $cat = Category::find($id);
+        $cat->name = $request->name;
+        $cat->update();
+
+        return response()->json(["message" => "Category Modified"], 200);
     }
 
     /**

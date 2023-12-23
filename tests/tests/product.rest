@@ -1,0 +1,40 @@
+GET http://127.0.0.1:8000/api/product
+
+### guardar product
+POST http://127.0.0.1:8000/api/product
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "HP Notebook",
+    "description": "Product Description",
+    "image": "apple.com/v/macbook-pro/ac/images/overview/hero_13__d1tfa5zby7e6_large_2x.jpg",
+    "brand": "Test",
+    "price": 86,
+    "price_sale": 29.99,
+    "stock": 99999,
+    "categories_id": 2
+}
+
+### mostrar producto
+GET http://127.0.0.1:8000/api/product/5
+Accept: application/json
+
+### modificar
+PUT http://127.0.0.1:8000/api/product/3
+Accept: application/json
+Content-Type: application/json
+
+{
+    "name": "HP Modified",
+    "description": "Product Description",
+    "image": "apple.com/v/macbook-pro/ac/images/overview/hero_13__d1tfa5zby7e6_large_2x.jpg",
+    "brand": "Test",
+    "price": 86,
+    "price_sale": 29.99,
+    "stock": 99999,
+    "categories_id": 2
+}
+
+### eliminar
+DELETE http://127.0.0.1:8000/api/product/2

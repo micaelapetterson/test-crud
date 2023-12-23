@@ -20,8 +20,9 @@ return new class extends Migration
             $table->string('image');
             $table->string('brand');
             $table->unsignedBigInteger('categories_id');
-            $table->decimal('price', 8, 2);
-            $table->decimal('price_sale', 8, 2);
+            $table->decimal('price', 8, 2)->default(0);
+            $table->decimal('price_sale', 8, 2)->default(0);
+            $table->integer('stock')->default(0)->unsigned()->nullable(false)->length(5);
             $table->timestamps();
 
             $table->foreign('categories_id')->references('id')->on('categories');
