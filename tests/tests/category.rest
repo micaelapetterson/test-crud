@@ -1,0 +1,25 @@
+GET http://127.0.0.1:8000/api/category
+
+### guardar category
+POST http://127.0.0.1:8000/api/category
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "HP"
+}
+
+### mostrar categoria
+GET http://127.0.0.1:8000/api/category/2
+
+### modificar
+PUT http://127.0.0.1:8000/api/category/2
+Content-Type: application/json
+Accept: application/json
+
+{
+    "name": "HP X360"
+}
+
+### eliminar
+DELETE http://127.0.0.1:8000/api/category/2
